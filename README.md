@@ -7,6 +7,10 @@
 
 Slythr is a smart contract security analysis platform that provides comprehensive vulnerability detection for Solidity contracts through RESTful APIs. Built with Golang, it eliminates the complexity of local tooling installation while delivering scalable, production-ready security analysis.
 
+## Slythr Frontend
+
+You can find the frontend for Slythr [here](https://github.com/Azzurriii/slythr-ui).
+
 ## Key Features
 
 **API-First Architecture**
