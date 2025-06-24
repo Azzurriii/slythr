@@ -40,17 +40,17 @@ jobs:
 
       - name: Execute deployment commands on VPS via SSH
         uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: GEMINI_API_KEY,POSTGRES_PASSWORD,REDIS_PASSWORD,ETHERSCAN_API_KEY
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
           ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
-        script: |
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: GEMINI_API_KEY,POSTGRES_PASSWORD,REDIS_PASSWORD,ETHERSCAN_API_KEY
+          script: |
           cd /home/deploy/apps/slythr
           echo "Creating .env file with secrets"
           touch .env
