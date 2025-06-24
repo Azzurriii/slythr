@@ -51,32 +51,32 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GEMINI_API_KEY,POSTGRES_PASSWORD,REDIS_PASSWORD,ETHERSCAN_API_KEY
           script: |
-          cd /home/deploy/apps/slythr
-          echo "Creating .env file with secrets"
-          touch .env
-          chmod 600 .env
-          cat > .env << EOF
-          SERVER_PORT=8080
-          SERVER_ENV=production
-          DB_HOST=postgres
-          DB_PORT=5432
-          DB_USER=postgres
-          DB_PASSWORD=${POSTGRES_PASSWORD}
-          DB_NAME=slythr
-          DB_SSL_MODE=disable
-          REDIS_ADDR=redis:6379
-          REDIS_PASSWORD=${REDIS_PASSWORD}
-          REDIS_DB=0
-          GEMINI_API_KEY=${GEMINI_API_KEY}
-          ETHERSCAN_API_KEY=${ETHERSCAN_API_KEY}
-          SLITHER_CONTAINER_NAME=slither
-          WORKSPACE_PATH=/workspace
-          EOF
-          echo "Stopping existing containers"
-          docker-compose down || true
-          echo "Pulling latest images"
-          docker-compose pull
-          echo "Building and starting new containers"
-          docker-compose up -d --build --remove-orphans
-          echo "Cleaning up .env file"
-          rm -f .env
+            cd /home/deploy/apps/slythr
+            echo "Creating .env file with secrets"
+            touch .env
+            chmod 600 .env
+            cat > .env << EOF
+            SERVER_PORT=8080
+            SERVER_ENV=production
+            DB_HOST=postgres
+            DB_PORT=5432
+            DB_USER=postgres
+            DB_PASSWORD=${POSTGRES_PASSWORD}
+            DB_NAME=slythr
+            DB_SSL_MODE=disable
+            REDIS_ADDR=redis:6379
+            REDIS_PASSWORD=${REDIS_PASSWORD}
+            REDIS_DB=0
+            GEMINI_API_KEY=${GEMINI_API_KEY}
+            ETHERSCAN_API_KEY=${ETHERSCAN_API_KEY}
+            SLITHER_CONTAINER_NAME=slither
+            WORKSPACE_PATH=/workspace
+            EOF
+            echo "Stopping existing containers"
+            docker-compose down || true
+            echo "Pulling latest images"
+            docker-compose pull
+            echo "Building and starting new containers"
+            docker-compose up -d --build --remove-orphans
+            echo "Cleaning up .env file"
+            rm -f .env
