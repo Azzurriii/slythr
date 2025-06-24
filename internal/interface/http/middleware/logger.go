@@ -13,13 +13,11 @@ func Logger() gin.HandlerFunc {
 
 		c.Next()
 
-		// Log request details
 		latency := time.Since(start)
 		status := c.Writer.Status()
 		method := c.Request.Method
 		path := c.Request.URL.Path
 
-		// Log request details with formatted message
 		switch {
 		case status >= 500:
 			logger.Default.Errorf("Server error - %s %s [%d] %v", method, path, status, latency)
